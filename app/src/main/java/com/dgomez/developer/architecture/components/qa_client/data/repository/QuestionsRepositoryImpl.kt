@@ -12,6 +12,7 @@ class QuestionsRepositoryImpl(
 ) : QuestionsRepository {
 
     override fun getQuestions(callback: Callback<List<Question>, Throwable>) {
+        callback.onSuccess(questionsLocalDataSource.getAllQuestions())
         getQuestionsFromServer(object : Callback<List<Question>, Throwable> {
 
             override fun onError(error: Throwable) {
