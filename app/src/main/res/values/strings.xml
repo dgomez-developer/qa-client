@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">qa-client</string>
+    <string name="error_getting_questions">There was an error getting the list of questions</string>
+</resources>
