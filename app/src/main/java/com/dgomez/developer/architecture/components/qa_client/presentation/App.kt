@@ -20,7 +20,7 @@ class App : Application() {
                 listOf(
                 persistenceModule, retrofitModule,
                 apiModule, repositoryModule, interactorModule,
-                viewModelModule
+                presenterModule
             ))
         }
 

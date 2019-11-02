@@ -12,13 +12,13 @@ import com.dgomez.developer.architecture.components.qa_client.domain.executor.Th
 import com.dgomez.developer.architecture.components.qa_client.domain.interactor.GetQuestionsUseCase
 import com.dgomez.developer.architecture.components.qa_client.domain.repository.QuestionsRepository
 import com.dgomez.developer.architecture.components.qa_client.presentation.executor.UiThread
-import com.dgomez.developer.architecture.components.qa_client.presentation.viewmodel.QuestionsListViewModel
+import com.dgomez.developer.architecture.components.qa_client.presentation.presenter.QuestionsPresenter
+import com.dgomez.developer.architecture.components.qa_client.presentation.presenter.QuestionsPresenterImpl
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
@@ -93,9 +93,9 @@ val interactorModule = module {
 
 }
 
-val viewModelModule = module {
+val presenterModule = module {
 
-    viewModel { QuestionsListViewModel(get()) }
+    factory<QuestionsPresenter> { QuestionsPresenterImpl(get()) }
 }
 
 

@@ -1,6 +1,5 @@
 package com.dgomez.developer.architecture.components.qa_client.data.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,7 +10,7 @@ import com.dgomez.developer.architecture.components.qa_client.data.model.Questio
 interface QuestionsDao {
 
     @Query("SELECT * from question")
-    fun getAll(): LiveData<List<QuestionEntity>>
+    fun getAll(): List<QuestionEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(map: List<QuestionEntity>)
