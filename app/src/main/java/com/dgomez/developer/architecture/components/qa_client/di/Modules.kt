@@ -4,9 +4,9 @@ import androidx.room.Room
 import com.dgomez.developer.architecture.components.qa_client.data.api.QuestionsApi
 import com.dgomez.developer.architecture.components.qa_client.data.database.AppDatabase
 import com.dgomez.developer.architecture.components.qa_client.data.executor.BackgroundExecutor
+import com.dgomez.developer.architecture.components.qa_client.data.repository.QuestionsPagedFactory
 import com.dgomez.developer.architecture.components.qa_client.data.repository.QuestionsRepositoryImpl
 import com.dgomez.developer.architecture.components.qa_client.data.repository.datasource.QuestionsLocalDataSource
-import com.dgomez.developer.architecture.components.qa_client.data.repository.datasource.QuestionsNetworkDataSource
 import com.dgomez.developer.architecture.components.qa_client.domain.executor.PostExecutionThread
 import com.dgomez.developer.architecture.components.qa_client.domain.executor.ThreadExecutor
 import com.dgomez.developer.architecture.components.qa_client.domain.interactor.GetQuestionsUseCase
@@ -80,7 +80,7 @@ val repositoryModule = module {
 
     single { QuestionsLocalDataSource(get()) }
 
-    single { QuestionsNetworkDataSource(get()) }
+    single { QuestionsPagedFactory(get(), get ()) }
 }
 
 val interactorModule = module {
