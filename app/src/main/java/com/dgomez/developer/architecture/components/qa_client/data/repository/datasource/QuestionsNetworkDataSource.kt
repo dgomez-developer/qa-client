@@ -5,9 +5,8 @@ import com.dgomez.developer.architecture.components.qa_client.domain.Question
 
 class QuestionsNetworkDataSource(private val api: QuestionsApi) {
 
-    fun getQuestions(): List<Question> {
-        val questionsCall = api.getQuestions()
-        val response = questionsCall.execute()
+    suspend fun getQuestions(): List<Question> {
+        val response = api.getQuestions()
         return if(response.isSuccessful){
             response.body() ?: emptyList()
         } else {

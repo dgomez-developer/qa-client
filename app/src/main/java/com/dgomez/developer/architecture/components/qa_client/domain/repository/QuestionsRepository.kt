@@ -5,6 +5,6 @@ import com.dgomez.developer.architecture.components.qa_client.domain.Question
 
 interface QuestionsRepository {
 
-    fun getQuestions(): LiveData<List<Question>>
+    suspend fun getQuestions(): LiveData<List<Question>>
 
 }
