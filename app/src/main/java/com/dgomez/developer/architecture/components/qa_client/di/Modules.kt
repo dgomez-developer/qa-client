@@ -15,6 +15,8 @@ import com.dgomez.developer.architecture.components.qa_client.presentation.execu
 import com.dgomez.developer.architecture.components.qa_client.presentation.viewmodel.QuestionsListViewModel
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -85,11 +87,13 @@ val repositoryModule = module {
 
 val interactorModule = module {
 
-    factory { GetQuestionsUseCase(get(), get(), get()) }
+    factory { GetQuestionsUseCase(get(), get()) }
 
     single<ThreadExecutor> { BackgroundExecutor() }
 
     single<PostExecutionThread> { UiThread() }
+
+    single<CoroutineDispatcher> { Dispatchers.IO }
 
 }
 
