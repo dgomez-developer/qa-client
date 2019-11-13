@@ -1,6 +1,7 @@
 package com.dgomez.developer.architecture.components.qa_client.data.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.dgomez.developer.architecture.components.qa_client.data.repository.datasource.QuestionsLocalDataSource
 import com.dgomez.developer.architecture.components.qa_client.data.repository.datasource.QuestionsNetworkDataSource
 import com.dgomez.developer.architecture.components.qa_client.domain.Question
@@ -11,8 +12,7 @@ class QuestionsRepositoryImpl(
     private val questionsNetworkDataSource: QuestionsNetworkDataSource): QuestionsRepository {
 
     override fun getQuestions(): LiveData<List<Question>> {
-        getQuestionsFromServer()
-        return questionsLocalDataSource.getAllQuestions()
+        return MutableLiveData<List<Question>>().apply { postValue(questionsNetworkDataSource.getQuestions()) }
     }
 
     private fun getQuestionsFromServer() {
