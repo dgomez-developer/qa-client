@@ -26,7 +26,7 @@ class QuestionsPagedDataSource(
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Question>) {
-        val questionsCall = api.getQuestions(params.key, params.requestedLoadSize)
+        val questionsCall = api.getQuestions(params.key, requestParams.pageSize)
         val response = questionsCall.execute()
         return if (response.isSuccessful) {
             questionsLD.postValue(response.body() ?: emptyList())
