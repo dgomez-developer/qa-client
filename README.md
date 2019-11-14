@@ -17,7 +17,7 @@ In this example app you will find different inplementations depending on the bra
 
 ## License
 
-    Copyright 2018 Debora Gomez
+    Copyright 2019 Debora Gomez
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
