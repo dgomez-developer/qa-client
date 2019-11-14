@@ -20,8 +20,10 @@ abstract class BaseBackgroundInteractor<I, O>(
 
     abstract suspend fun run(inputParams: I): LiveData<O>
 
+    @kotlinx.coroutines.ExperimentalCoroutinesApi
     operator fun invoke(inputParams: I): Flow<Either<O, Throwable>> = buildFlow(inputParams)
 
+    @kotlinx.coroutines.ExperimentalCoroutinesApi
     private fun buildFlow(inputParams: I): Flow<Either<O, Throwable>> = flow<Either<O, Throwable>> {
         val result = execute(inputParams)
         when (result) {
