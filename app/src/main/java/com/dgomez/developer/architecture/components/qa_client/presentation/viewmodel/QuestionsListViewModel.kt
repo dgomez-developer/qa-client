@@ -3,10 +3,13 @@ package com.dgomez.developer.architecture.components.qa_client.presentation.view
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dgomez.developer.architecture.components.qa_client.R
 import com.dgomez.developer.architecture.components.qa_client.domain.interactor.GetQuestionsUseCase
 import com.dgomez.developer.architecture.components.qa_client.domain.model.Either
 import com.dgomez.developer.architecture.components.qa_client.presentation.model.QuestionViewItem
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class QuestionsListViewModel(private val getQuestionsUseCase: GetQuestionsUseCase) : ViewModel() {
 
@@ -19,15 +22,22 @@ class QuestionsListViewModel(private val getQuestionsUseCase: GetQuestionsUseCas
 
     fun init() {
         loaderLD.value = true
-        val listOfQuestionsLD = getQuestionsUseCase.invoke(Unit)
-        questionsLD.removeSource(listOfQuestionsLD)
-        questionsLD.addSource(listOfQuestionsLD) {
-            when (it) {
-                is Either.Success -> questionsLD.value =
-                    it.value.map { question -> QuestionViewItem(question.id, question.question, question.contact) }
-                is Either.Failure -> messageLD.value = R.string.error_getting_questions
+        viewModelScope.launch {
+            val listOfQuestionsLD = getQuestionsUseCase.invoke(Unit)
+            listOfQuestionsLD.collect {
+                when (it) {
+                    is Either.Success -> questionsLD.value =
+                        it.value.map { question ->
+                            QuestionViewItem(
+                                question.id,
+                                question.question,
+                                question.contact
+                            )
+                        }
+                    is Either.Failure -> messageLD.value = R.string.error_getting_questions
+                }
+                loaderLD.value = false
             }
-            loaderLD.value = false
         }
     }
 
