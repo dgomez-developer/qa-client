@@ -64,6 +64,14 @@ class BaseFragment : Fragment() {
             .navigateUp(appBarConfig)
     }
 
+    fun popToRoot() {
+        val navController =
+            requireActivity().findNavController(navHostId)
+        // navigate to the start destination
+        navController.popBackStack(
+            navController.graph.startDestination, false)
+    }
+
     fun handleDeepLink(intent: Intent): Boolean =
         requireActivity()
             .findNavController(navHostId)

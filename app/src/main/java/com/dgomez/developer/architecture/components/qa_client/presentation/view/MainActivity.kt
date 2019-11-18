@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), CreateQuestionFragment.OnFragmentInteractionListener,
-    BottomNavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener {
+    BottomNavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener,
+    BottomNavigationView.OnNavigationItemReselectedListener {
 
     private val fragments = listOf(
         BaseFragment.newInstance(
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity(), CreateQuestionFragment.OnFragmentInter
 
         main_view_pager.addOnPageChangeListener(this)
         bottom_nav.setOnNavigationItemSelectedListener(this)
+        bottom_nav.setOnNavigationItemReselectedListener(this)
 
         // check deeplink only after viewPager is setup
         main_view_pager.post(this::checkDeepLink)
@@ -98,6 +100,12 @@ class MainActivity : AppCompatActivity(), CreateQuestionFragment.OnFragmentInter
             setItem(position)
         }
         return true
+    }
+
+    override fun onNavigationItemReselected(item: MenuItem) {
+        val position = indexToPage.values.indexOf(item.itemId)
+        val fragment = fragments[position]
+        fragment.popToRoot()
     }
 
     private fun setItem(position: Int) {
