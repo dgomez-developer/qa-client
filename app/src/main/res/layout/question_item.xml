@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.AppCompatTextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/question_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:paddingBottom="12dp"
+        tools:text="Question text" />
 
-</androidx.appcompat.widget.AppCompatTextView>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/question_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question_title"
+        android:textSize="16sp"
+        android:paddingBottom="12dp"
+        tools:text="contact person" />
+
+    <View
+        app:layout_constraintTop_toBottomOf="@+id/question_contact"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
