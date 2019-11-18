@@ -8,12 +8,21 @@ In this example app you will find different inplementations depending on the bra
 * **feature/example-with-no-architecture-components**: Implementation using traditional Java Classes.
 * **example-with-coroutines**: Based on **develop** branch replacing Executors by coroutines.
 * **example-with-flow**: Based on **example-with-coroutines** branch replacing LiveDatas with Flows.
+* **example-with-navigation-components**: Based on **example-with-flow** branch using navigation components to connect 2 fragments
+* **example-with-tabs**: Based on **example-with-navigation-components** branch using navigation components in a tab bar Instagram/Youtube style.
+
+## How to launch a DL via console in tab bar example
+
+```aidl
+adb shell am start -W -a android.intent.action.VIEW -d https://www.dgomez.developer.com/text/contact com.dgomez.developer.architecture.components.qa_client
+```
 
 ## References
 
 * [Fernando Cejas - Architecting Reloaded](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)
 * [Jose Alcérreca - LiveData beyond the ViewModel - Reactive patterns using Transformations and MediatorLiveData](https://medium.com/androiddevelopers/livedata-beyond-the-viewmodel-reactive-patterns-using-transformations-and-mediatorlivedata-fda520ba00b7)
 * [Chibatching - Kotlin Coroutines Flow + LiveData + Data Binding](https://medium.com/@chibatching/kotlin-coroutines-flow-livedata-data-binding-b3436c4ca818)
+* [Ebi Igweze - Instagram style navigation using Navigation Component](https://android.jlelse.eu/instagram-style-navigation-using-navigation-component-854037cf1389)
 
 ## License
 
