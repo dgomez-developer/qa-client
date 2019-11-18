@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_other"
+    app:startDestination="@id/otherFragment">
+
+    <fragment
+        android:id="@+id/otherFragment"
+        android:name="com.dgomez.developer.architecture.components.qa_client.presentation.view.OtherFragment"
+        android:label="fragment_other"
+        tools:layout="@layout/fragment_create_question" />
+
+</navigation>

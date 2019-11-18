@@ -13,9 +13,10 @@
             android:name=".presentation.App"
             android:theme="@style/AppTheme">
         <activity android:name=".presentation.view.MainActivity">
+            <nav-graph android:value="@navigation/nav_graph" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

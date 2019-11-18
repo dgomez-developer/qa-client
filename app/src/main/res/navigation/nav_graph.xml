@@ -9,7 +9,11 @@
         android:id="@+id/createQuestionFragment"
         android:name="com.dgomez.developer.architecture.components.qa_client.presentation.view.CreateQuestionFragment"
         android:label="fragment_create_question"
-        tools:layout="@layout/fragment_create_question" />
+        tools:layout="@layout/fragment_create_question">
+        <deepLink
+            android:id="@+id/create_question_deepLink"
+            app:uri="www.dgomez.developer.com/{text}/{contact}" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.dgomez.developer.architecture.components.qa_client.presentation.view.MainFragment"
