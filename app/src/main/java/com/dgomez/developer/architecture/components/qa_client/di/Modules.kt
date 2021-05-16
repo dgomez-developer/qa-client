@@ -1,6 +1,7 @@
 package com.dgomez.developer.architecture.components.qa_client.di
 
 import androidx.room.Room
+import com.apollographql.apollo.ApolloClient
 import com.dgomez.developer.architecture.components.qa_client.data.api.QuestionsApi
 import com.dgomez.developer.architecture.components.qa_client.data.database.AppDatabase
 import com.dgomez.developer.architecture.components.qa_client.data.executor.BackgroundExecutor
@@ -74,13 +75,23 @@ val apiModule = module {
 
 }
 
+val graphql = module {
+
+    fun provideClient(): ApolloClient = ApolloClient.builder()
+        .serverUrl("http://localhost:5000/graphql")
+        .build()
+
+    single { provideClient() }
+
+}
+
 val repositoryModule = module {
 
     single<QuestionsRepository> { QuestionsRepositoryImpl(get(), get()) }
 
     single { QuestionsLocalDataSource(get()) }
 
-    single { QuestionsNetworkDataSource(get()) }
+    single { QuestionsNetworkDataSource(get(), get()) }
 }
 
 val interactorModule = module {

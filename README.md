@@ -17,6 +17,21 @@ In this example app you will find different inplementations depending on the bra
 adb shell am start -W -a android.intent.action.VIEW -d https://www.dgomez.developer.com/text/contact com.dgomez.developer.architecture.components.qa_client
 ```
 
+## GraphQL support
+
+To download your own GraphQL schema, apollo library offer a gradle task:
+
+```
+./gradlew downloadApolloSchema --endpoint="http://localhost:5000/graphql" --schema="app/src/main/graphql/com/dgomez/developer/architecture/components/qa_client/schema.json"
+
+```
+
+Generating models automatically by using Apollo gradle task:
+
+```
+ ./gradlew generateApolloSources
+```
+
 ## References
 
 * [Fernando Cejas - Architecting Reloaded](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)

@@ -6,6 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.apollographql.apollo'
+
+
 
 android {
     compileSdkVersion 28
@@ -23,6 +26,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+apollo {
+    // instruct the compiler to generate Kotlin models
+    generateKotlinModels.set(true)
 }
 
 dependencies {
@@ -54,6 +62,10 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.3.0"
     implementation 'com.squareup.retrofit2:converter-jackson:2.2.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    implementation "com.apollographql.apollo:apollo-runtime:$graphql_version"
+    implementation "com.apollographql.apollo:apollo-coroutines-support:$graphql_version"
+//    implementation "com.apollographql.apollo:apollo-api:$graphql_version"
 
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"

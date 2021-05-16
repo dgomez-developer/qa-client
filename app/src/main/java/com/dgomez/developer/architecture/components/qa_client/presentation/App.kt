@@ -18,7 +18,7 @@ class App : Application() {
 
             modules(
                 listOf(
-                persistenceModule, retrofitModule,
+                persistenceModule, retrofitModule, graphql,
                 apiModule, repositoryModule, interactorModule,
                 viewModelModule
             ))
