@@ -10,12 +10,12 @@ class QuestionsRepositoryImpl(
     private val questionsLocalDataSource: QuestionsLocalDataSource,
     private val questionsNetworkDataSource: QuestionsNetworkDataSource): QuestionsRepository {
 
-    override fun getQuestions(): LiveData<List<Question>> {
+    override suspend fun getQuestions(): LiveData<List<Question>> {
         getQuestionsFromServer()
         return questionsLocalDataSource.getAllQuestions()
     }
 
-    private fun getQuestionsFromServer() {
+    private suspend fun getQuestionsFromServer() {
         val questions = questionsNetworkDataSource.getQuestions()
         questionsLocalDataSource.updateQuestions(questions)
     }

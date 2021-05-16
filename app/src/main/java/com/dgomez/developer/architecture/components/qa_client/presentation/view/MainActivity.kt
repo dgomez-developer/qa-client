@@ -26,13 +26,19 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.showQuestions().observe(this, Observer {
             adapter.questionsList = it
+            swiperefresh.isRefreshing = false
         })
 
         viewModel.showMessage().observe(this, Observer {
             Snackbar.make(list_of_questions_container, it, Snackbar.LENGTH_LONG).show()
+            swiperefresh.isRefreshing = false
         })
 
         viewModel.init()
+
+        swiperefresh.setOnRefreshListener {
+            viewModel.init()
+        }
     }
 
 
