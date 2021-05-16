@@ -7,6 +7,7 @@ In this example app you will find different inplementations depending on the bra
 * **develop**: Implementation using LiveData + ViewModels + Executors + Room
 * **feature/example-with-no-architecture-components**: Implementation using traditional Java Classes.
 * **example-with-coroutines**: Based on **develop** branch replacing Executors by coroutines.
+* **graphql-integration**: Based on **example-with-coroutine** branch replacing Retrofit by Apollo GraphQL client.
 * **example-with-flow**: Based on **example-with-coroutines** branch replacing LiveDatas with Flows.
 * **example-with-navigation-components**: Based on **example-with-flow** branch using navigation components to connect 2 fragments
 * **example-with-tabs**: Based on **example-with-navigation-components** branch using navigation components in a tab bar Instagram/Youtube style.
@@ -15,6 +16,21 @@ In this example app you will find different inplementations depending on the bra
 
 ```aidl
 adb shell am start -W -a android.intent.action.VIEW -d https://www.dgomez.developer.com/text/contact com.dgomez.developer.architecture.components.qa_client
+```
+
+## GraphQL support
+
+To download your own GraphQL schema, apollo library offer a gradle task:
+
+```
+./gradlew downloadApolloSchema --endpoint="http://localhost:5000/graphql" --schema="app/src/main/graphql/com/dgomez/developer/architecture/components/qa_client/schema.json"
+
+```
+
+Generating models automatically by using Apollo gradle task:
+
+```
+ ./gradlew generateApolloSources
 ```
 
 ## References
